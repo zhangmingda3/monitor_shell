@@ -8,17 +8,15 @@
     GUEST_PORT=$2
     
     if [  -n "$GUEST_IP" ] && [  -n "$GUEST_PORT" ]; then
-    
-    
     	while :
     	do 
-    	TCPING_OUT=`tcping -t 2  $GUEST_IP $GUEST_PORT | awk  '{ print $0"\t" strftime("%Y-%m-%d-%H:%M:%S") }'` 
-            TIME_OUT=`echo $TCPING_OUT | grep timeout`
-    
-            if [ -n "$TIME_OUT" ] ; then
-    		echo $TIME_OUT >>  $GUEST_IP"-tcping-"$GUEST_PORT"-TIMEOUT.log"
+    	    TCPING_STDOUT=`tcping -t 2  $GUEST_IP $GUEST_PORT | awk  '{ print $0"\t" strftime("%Y-%m-%d-%H:%M:%S") }'` 
+            echo $TCPING_STDOUT |grep open
+	    #echo $? 
+            if [ $? -eq '0' ] ; then
+    		echo $TCPING_STDOUT >>  $GUEST_IP"-tcp-"$GUEST_PORT"-Open.log"
             else
-    		echo $TCPING_OUT >> $GUEST_IP"-tcping-"$GUEST_PORT"-OPEN.log"
+    		echo $TCPING_STDOUT >> $GUEST_IP"-tcp-"$GUEST_PORT"-Close.log"
             fi
     
     	sleep 0.5

@@ -5,9 +5,8 @@ IP_ADDRESS=$1
     	while :
     	do
     		PING_OK=`ping -c 1 -W 2  $IP_ADDRESS  | grep "time=" `
-		TIME_=`date`
     		if [ 0 -eq $? ]; then
-    			echo "$PING_OK $TIME_" >> PING_${IP_ADDRESS}_OK.log
+    			echo "$PING_OK $TIME_ `date`" >> PING_${IP_ADDRESS}_OK.log
     		else
     			echo "PING $IP_ADDRESS 2seconds TMOUT...  `date`"  >> PING_${IP_ADDRESS}_TMOUT.log
     		fi
@@ -18,4 +17,3 @@ IP_ADDRESS=$1
     	echo "用法：$0 <IP or 域名>"
 	echo "监控日志请到当前目录下获取" 
     fi
-
