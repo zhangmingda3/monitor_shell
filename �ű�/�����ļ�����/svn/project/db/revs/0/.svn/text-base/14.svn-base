@@ -1,0 +1,241 @@
+id: 0-14.0.r14/0
+type: dir
+count: 0
+cpath: /svn-mkdir-mydir
+copyroot: 0 /
+
+PLAIN
+K 4
+a.sh
+V 19
+file 0-12.0.r12/377
+K 9
+abrt-ccpp
+V 20
+file 1l-1.0.r1/90003
+K 9
+abrt-oops
+V 20
+file 2f-1.0.r1/94077
+K 5
+abrtd
+V 19
+file z-1.0.r1/87003
+K 5
+acpid
+V 19
+file 3-1.0.r1/82689
+K 3
+atd
+V 20
+file 2l-1.0.r1/94898
+K 6
+auditd
+V 20
+file 1j-1.0.r1/89732
+K 16
+blk-availability
+V 19
+file 7-1.0.r1/83223
+K 8
+cgconfig
+V 20
+file 1n-1.0.r1/90276
+K 5
+cgred
+V 19
+file b-1.0.r1/83768
+K 8
+cpuspeed
+V 20
+file 2h-1.0.r1/94350
+K 5
+crond
+V 20
+file 1b-1.0.r1/88641
+K 9
+functions
+V 20
+file 2n-1.0.r1/95123
+K 9
+haldaemon
+V 19
+file l-1.0.r1/85115
+K 4
+halt
+V 18
+file 1z-1.0.r11/54
+K 12
+htcacheclean
+V 20
+file 15-1.0.r1/87814
+K 5
+httpd
+V 20
+file 1t-1.0.r1/91093
+K 9
+ip6tables
+V 20
+file 21-1.0.r1/92177
+K 8
+iptables
+V 20
+file 17-1.0.r1/88090
+K 10
+irqbalance
+V 20
+file 27-1.0.r1/92995
+K 5
+kdump
+V 19
+file 5-1.0.r1/82955
+K 12
+lvm2-lvmetad
+V 20
+file 1h-1.0.r1/89455
+K 12
+lvm2-monitor
+V 20
+file 19-1.0.r1/88364
+K 9
+mdmonitor
+V 20
+file 2j-1.0.r1/94624
+K 10
+messagebus
+V 20
+file 11-1.0.r1/87271
+K 5
+named
+V 19
+file f-1.0.r1/84304
+K 10
+netconsole
+V 20
+file 2p-1.0.r1/95345
+K 5
+netfs
+V 19
+file 0-1.0.r1/82425
+K 7
+network
+V 19
+file p-1.0.r1/85657
+K 8
+nfs-rdma
+V 20
+file 1f-1.0.r1/89182
+K 4
+ntpd
+V 20
+file 2d-1.0.r1/93809
+K 7
+ntpdate
+V 20
+file 25-1.0.r1/92723
+K 11
+portreserve
+V 20
+file 1p-1.0.r1/90549
+K 7
+postfix
+V 19
+file x-1.0.r1/86733
+K 6
+psacct
+V 20
+file 2x-1.0.r1/96435
+K 9
+quota_nld
+V 19
+file j-1.0.r1/84844
+K 5
+rdisc
+V 20
+file 2b-1.0.r1/93540
+K 4
+rdma
+V 19
+file 9-1.0.r1/83500
+K 11
+restorecond
+V 20
+file 1x-1.0.r1/91633
+K 5
+rhnsd
+V 20
+file 2z-1.0.r1/96705
+K 9
+rhsmcertd
+V 19
+file v-1.0.r1/86462
+K 4
+rngd
+V 19
+file r-1.0.r1/85927
+K 7
+rsyslog
+V 20
+file 29-1.0.r1/93269
+K 7
+sandbox
+V 20
+file 23-1.0.r1/92452
+K 9
+saslauthd
+V 19
+file n-1.0.r1/85386
+K 6
+single
+V 20
+file 1r-1.0.r1/90824
+K 6
+smartd
+V 19
+file t-1.0.r1/86193
+K 5
+squid
+V 20
+file 1v-1.0.r1/91363
+K 4
+sshd
+V 17
+file 13-1.0.r6/50
+K 15
+svn-mkdir-mydir
+V 16
+dir 0-14.0.r14/0
+K 8
+svnserve
+V 20
+file 2v-1.0.r1/96163
+K 7
+sysstat
+V 20
+file 2t-1.0.r1/95892
+K 9
+udev-post
+V 19
+file h-1.0.r1/84572
+K 7
+varnish
+V 20
+file 2r-1.0.r1/95620
+K 6
+vsftpd
+V 20
+file 1d-1.0.r1/88911
+END
+ENDREP
+id: 0.0.r14/2190
+type: dir
+pred: 0.0.r13/2072
+count: 14
+text: 14 75 2102 2102 2f8c20ba05d48fe6c7ad17f1aa70393b
+cpath: /
+copyroot: 0 /
+
+_0.0.t13-i add-dir false false /svn-mkdir-mydir
+
+
+2190 2325

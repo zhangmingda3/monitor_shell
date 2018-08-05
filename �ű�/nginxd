@@ -1,0 +1,92 @@
+#!/bin/bash
+#chkconfig: 2345 88 89
+#请执行chkconfig --add [本脚本名],将启动项添加到
+	######nginx启动脚本##########
+	##提示：1、使用case语句比较方便
+	##提示：2、根据pid文件状态，判断运行状态
+	##提示：3、有chkconfig的启动项
+#if [ -f /usr/local/nginx/logs/nginx.pid];then
+#pid=`cat /usr/local/nginx/logs/nginx.pid`
+#else
+#fi
+echo2(){
+        echo -e "\033[$1m$2\033[0m"
+	}
+	chenggong=`echo2 32 成功`
+	shibai=`echo2 31 失败`
+	runing=`echo2 32 正在运行`
+	yisi=`echo2 31 已死`
+name=`basename $0`
+case $1 in
+start)
+	/usr/local/nginx/sbin/nginx 
+	if [ $? == 0 ];then
+	echo "$name程序启动$chenggong！"
+	else
+	echo "$name程序启动$shibai，请确认确认配置是否正确或是否已经启动(端口占用)"
+	fi
+;;
+stop)	[ -f /usr/local/nginx/logs/nginx.pid ]&&kill `cat /usr/local/nginx/logs/nginx.pid` &>/dev/null
+	if [ $? == 0 ];then
+	echo "$name程序关闭$chenggong"
+	else
+	echo "$name关闭$shibai，请确认是否已经关闭"
+	fi
+;;
+reload)	[ -f /usr/local/nginx/logs/nginx.pid ]&&/usr/local/nginx/sbin/nginx -s reload >/dev/null
+	if [ $? == 0 ];then
+	echo "$name配置重新载入$chenggong"
+	else
+	echo "$name配置重新载入$shibai，请确认程序是否运行(端口已占用),或最新配置语句出错！"
+	fi
+;;
+restart)
+	[ -f /usr/local/nginx/logs/nginx.pid ]&&kill `cat /usr/local/nginx/logs/nginx.pid`
+	if [ $? == 0 ];then
+	echo "$name程序关闭$chenggong"
+	else
+	echo "$name关闭$shibai，请确认是否已经关闭"
+	fi
+	sleep 0.5
+	/usr/local/nginx/sbin/nginx
+	if [ $? == 0 ];then
+	echo "$name程序启动$chenggong！"
+	else
+	echo "$name程序启动$shibai，请确认确认配置是否正确或是否已经启动"
+	fi
+;;
+checkconf)
+	/usr/local/nginx/sbin/nginx -t
+;;
+status)
+	if [ -f /usr/local/nginx/logs/nginx.pid ];then
+	echo "$name$runing......."
+	else
+	echo "$name$yisi！！！唉！！！"
+	fi
+;;
+*)
+	echo "用法$name请加{start|stop|restart|status|reload}"	
+;;
+esac
+
+#####一键部署nginx的脚本##########
+##提示：1、判断yum是否有，没有就提示并退出
+##提示：2、使用yum自动安装依赖软件包
+##提示：3、自动解压并安装nginx
+##提示：4、自动启动该服务
+##提示：5、设置开机自启
+#附加：：根据用户的语言环境，如果是英文则提示英文！，如果是中文则提示中文。用到变量$LANG
+############################################################################################
+####安全检测脚本/var/log/secure#############
+##要求：实时判断是否有人链接服务出现密码错误，如果密码出错三次，则将IP加入ip防火墙
+
+###ssh用户名输入出错三次
+
+##显示进度的脚本
+##带进度条的脚本
+
+#/bin/bash
+#jindu(){
+#wh
+#}

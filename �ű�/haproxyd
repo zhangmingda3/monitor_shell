@@ -1,0 +1,78 @@
+#!/bin/bash
+#chkconfig:2345 85 15
+#description: haproxy load balancer
+
+
+DAEMON="haproxy"
+LUJING="/usr/local/haproxy"
+CONF="${LUJING}/conf/${DAEMON}.cfg"
+PID=`pidof haproxy`
+STAT=$(netstat -anputl | grep $DAEMON )
+BASENAME=`basename $0`
+echo2(){
+	echo -e "\033[$1m$2\033[0m" 
+}
+
+runing=`echo2 32 "runing"`
+ok=`echo2 32 "[OK ]"`
+fail=`echo2 31 "[FAIL]"`
+
+start() {
+  if [ -z "$STAT" ];then
+     echo -en "`basename $0` starting ...      \t\t\t"
+     ${LUJING}/sbin/${DAEMON} -f $CONF &&  echo "$ok" ||  echo "$fail"
+  else
+     echo "$BASENAME already $runing"
+  fi
+}
+
+stop() {
+  if [ -n "$STAT" ];then
+     echo -en "`basename $0` stoping ...      \t\t\t"
+     kill $PID && echo "$ok" || echo "$fail"
+  else
+     echo "$BASENAME already stop"
+  fi
+}
+
+check() {
+  ${LUJING}/sbin/${DAEMON} -c -q -V -f $CONF
+  }
+
+status(){
+       if [ -n "$STAT" ];then
+         echo "$BASENAME is $runing"
+       else
+         echo "$BASENAME is stopped"
+       fi
+}
+
+restart(){
+     echo -en "$BASENAME restart ...      \t\t\t"
+      ${LUJING}/sbin/${DAEMON} -f $CONF -st $PID  &&  echo "$ok" || echo "$fail"
+}
+#########################################
+case $1 in 
+
+check)
+ check
+;;
+start)
+ start
+;;
+
+stop)
+ stop
+;;
+
+restart)
+ restart
+;;
+
+status)
+ status
+;;
+*)
+	echo "USAGE: $BASENAME start|stop|restart|status"
+;;
+esac
