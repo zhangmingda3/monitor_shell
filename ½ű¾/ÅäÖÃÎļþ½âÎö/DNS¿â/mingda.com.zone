@@ -1,0 +1,16 @@
+
+$TTL 1D
+@	IN SOA	@ rname.invalid. (
+					121313131	; serial
+					1D	; refresh
+					1H	; retry
+					1W	; expire
+					3H )	; minimum
+					
+@        NS	svr5.tedu.cn.
+@        NS     pc205.tedu.cn.
+www     A        1.1.1.1
+muisc A         2.2.2.3
+video A         3.3.3.3
+	A	127.0.0.1
+	AAAA	::1

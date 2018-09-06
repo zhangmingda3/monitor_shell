@@ -1,0 +1,23 @@
+#!/bin/bash
+#chkconfig: 2345 82 89
+####tomcat启动脚本##########
+
+case $1 in 
+
+start)
+/usr/local/tomcat/bin/catalina.sh start
+;;
+stop)
+ /usr/local/tomcat/bin/catalina.sh stop
+;;
+
+restart)
+	/usr/local/tomcat/bin/catalina.sh stop
+
+	/usr/local/tomcat/bin/catalina.sh start
+
+;;
+*)
+	echo "$0用法（start|stop|restart）"
+;;
+esac

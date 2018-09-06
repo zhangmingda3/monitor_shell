@@ -1,0 +1,1 @@
+SUBSYSTEMS=="usb",ACTION=="add",KERNEL=="sd[a-z]*",ATTRS{serial}=="4C531001550521103504",SYMLINK+="mingda-usb%n",RUN+="/sbin/service httpd restart"

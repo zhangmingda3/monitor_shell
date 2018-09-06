@@ -1,0 +1,13 @@
+$TTL 1D
+@	IN SOA	@ rname.invalid. (
+					0	; serial
+					1D	; refresh
+					1H	; retry
+					1W	; expire
+					3H )	; minimum
+@	NS	svr5.tedu.cn.
+svr5   A      192.168.4.5
+@  MX 10  mail.tedu.cn.      ;;邮箱的FQDN，注意优先级必须写
+bj.tedu.cn. NS  pc205.tedu.cn.  ;;子域授权，
+mail A   192.168.4.100
+pc205 A      192.168.4.205	;;子域的IP地址解析

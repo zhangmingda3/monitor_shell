@@ -1,0 +1,14 @@
+$TTL 1D
+@	IN SOA	@ rname.invalid. (
+			 	2016070702	; serial
+					1D	; refresh
+					1H	; retry
+					1W	; expire
+					3H )	; minimum
+@	NS	svr5.tedu.cn.
+@	NS	pc205.tedu.cn.
+svr5   A  192.168.4.5
+www     A  192.168.4.100
+ftp  CNAME www
+mail   A 192.168.4.25
+*   A  192.168.4.100

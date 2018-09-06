@@ -1,0 +1,15 @@
+##监控服务器上的配置
+##位置：/etc/mysql-mmm/mmm_mon.conf
+include mmm_common.conf
+<monitor>
+	ip					192.168.4.136 ##本机ip
+	pid_path				/var/run/mmm_mond.pid
+	bin_path				/usr/lib/mysql-mmm/
+	status_path				/var/lib/misc/mmm_mond.status
+	ping_ips				192.168.4.132, 192.168.4.133, 192.168.4.134, 192.168.4.135 ##所有监控的IP地址
+</monitor>
+<host default>					##当前机器的配置
+	monitor_user			monitor	##mysql服务器监控用用户名
+	monitor_password		654321  ##密码
+</host>
+debug 1				## 1 为显示启动过程

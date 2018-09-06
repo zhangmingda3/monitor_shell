@@ -1,0 +1,9 @@
+[mysqld]
+log-bin=master5	 
+#
+#定义binlog日志文件的存放路径和前缀，如果不写"=master5" 默认为主机名-bin-000001
+#注意自定义的目录要给mysql用户权限chown mysql.mysql /mylog/
+#long-query-time=3
+#超时时间
+server_id=4
+#主从同步的id号

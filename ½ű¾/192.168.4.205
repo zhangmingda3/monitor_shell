@@ -1,0 +1,27 @@
+#!/bin/bash
+#安全检测脚本/var/log/secure
+#要求：
+#1.实时判断是否有人连接服务器出现密码错误 
+#2.如果密码出错3次，则把该IP导出到文件
+#3.如果用户名错误3次，则把IP导出到文件
+#################################################
+LOGINERROR="/var/log/login-error.log" ##用户名输错3次，以及用户名对密码输错三次的安全日志存放地
+while :
+do
+dangerous=(`awk '$5~/sshd/&&$6~/Failed/&&$10~/from/{IP[$11]++} END{for(i in IP){print IP[i],i}}' /var/log/secure`)
+NAMEINV=(`awk '$5~/sshd/&&$6~/Invalid/&&$7~/user/{IP[$10]++} END{for(i in IP){print IP[i],i}} ' /var/log/secure`)
+dangerous=${dangerous[0]:-0} ##如果ssh密码错的一个也没有，则变量值为空，需要临时赋值避免语法错误
+NAMEINV=${NAMEINV[0]:-0}	
+echo ${dangerous[0]}
+echo ${NAMEINV[0]};#exit
+if [ ${dangerous[0]} -ge 3 ];then
+	grep ${dangerous[1]} $LOGINERROR &>/dev/null &&continue	##先确认黑名单中没有记录再添加到
+	iptables -I INPUT -s ${dangerous[1]} -p tcp --dport 22 -j REJECT	##添加到防火墙
+	echo "IP：${dangerous[1]}通过ssh远程方式连续输入密码超过${dangerous[0]}次,已将其加入防火墙" >> $LOGINERROR
+fi	####日志存放
+if [ ${NAMEINV[0]} -ge 3 ];then	##用户名出错三次以上将IP加到防火墙
+	grep ${NAMEINV[1]} $LOGINERROR &>/dev/null &&continue
+	iptables -I INPUT -s ${NAMEINV[1]} -p tcp --dport 22 -j REJECT
+	echo "IP:${NAMEINV[1]}通过ssh远程方式用户名输入错误超过${NAMEINV[0]}次,已将其加入黑名单">>$LOGINERROR
+fi	####日志存放
+done
